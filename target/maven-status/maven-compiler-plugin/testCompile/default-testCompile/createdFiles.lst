@@ -1,0 +1,4 @@
+base\BaseTest.class
+pages\BasePage.class
+tests\AmazonTest.class
+pages\HomePage.class

@@ -55,7 +55,7 @@ public class BasePage extends BaseTest {
     public void selectByValue(By elementPropertyBy, String valueToSelect, String elementName) {
         Select select = new Select(driver.findElement(elementPropertyBy));
         select.selectByValue(valueToSelect);
-        test.info("'" + valueToSelect + "' is selected in dropdown '" + elementName + "'");
+        test.info("'" + valueToSelect + "' units is selected from dropdown for element - '" + elementName + "'");
     }
 
     public void waitForElementToBePresent(By elementPropertyBy, int waitTimeInSec) {

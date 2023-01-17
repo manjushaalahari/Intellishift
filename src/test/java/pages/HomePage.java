@@ -62,7 +62,7 @@ public class HomePage extends BasePage {
         WebElement lastSuggestion = allSuggestions.get(allSuggestions.size() - 1);
         String lastSuggestionText = lastSuggestion.getText();
         this.clickControl(lastSuggestion,  lastSuggestionText);
-        test.pass("Successfully clicked on last option from suggestion '" + lastSuggestionText + "'");
+        test.pass("Successfully clicked on last option from suggestions '" + lastSuggestionText + "'");
     }
 
     public void validateTitleInSearchResults(String containTextToCompare) {
@@ -80,7 +80,7 @@ public class HomePage extends BasePage {
         List<String> allSearchResultsPrices = this.findElements(this.searchResultsPrice).stream().map(ele -> ele.getAttribute("innerHTML").replace("$", "").trim()).collect(Collectors.toList());
         List<Float> pricesInFloat = allSearchResultsPrices.stream().map(Float::valueOf).collect(Collectors.toList());
         float value = pricesInFloat.stream().min(Comparator.<Float>naturalOrder()).get();
-        System.out.println("Found Lowest price - " + value);
+        System.out.println("Lowest price of gel pen is - " + value);
         boolean flag = false;
 
         for (WebElement price : this.findElements(this.searchResultsPrice)) {
@@ -92,7 +92,7 @@ public class HomePage extends BasePage {
             }
         }
 
-        Assert.assertTrue(flag, "Found Lowest price and clicked");
+        Assert.assertTrue(flag, "Found lowest price gel pen and clicked");
 
     }
 
@@ -114,6 +114,6 @@ public class HomePage extends BasePage {
         String actualMsg = this.findElement(this.removedMsg).getText();
         String expectedMsg = "was removed from Shopping Cart.";
         Assert.assertTrue(actualMsg.contains(expectedMsg));
-        test.pass("successfully displayed Removed msg");
+        test.pass("Successfully verified removal message from the Shopping Cart");
     }
 }

@@ -7,6 +7,7 @@ import org.testng.Assert;
 
 import com.aventstack.extentreports.Status;
 
+import java.time.Duration;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -27,6 +28,8 @@ public class HomePage extends BasePage {
     }
 
     public void enterInSearchBox(String textToEnter) {
+    	//this.waitForElementToBePresent(this.searchTxtBox, 30);
+    	//System.out.println("Element SearchTxtBox is present");
         this.enterText(this.searchTxtBox, textToEnter, "Search Box");
         try {
         	Thread.sleep(3000);

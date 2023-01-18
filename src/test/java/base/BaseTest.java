@@ -1,10 +1,13 @@
 package base;
 
 import com.aventstack.extentreports.ExtentReports;
+
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -13,6 +16,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.manager.SeleniumManager;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
@@ -26,6 +31,9 @@ import java.time.Duration;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.WebElement;
 
 public class BaseTest {
     public static String dest;
@@ -89,14 +97,16 @@ public class BaseTest {
         } else if (browserName.equalsIgnoreCase("Chrome")) {
 
             //SeleniumManager.getInstance().getDriverPath("chromedriver");
-            System.setProperty("webdriver.chrome.driver","C:\\Manjusha\\Selenium\\chromedriver_win32_109\\chromedriver.exe");
-            driver = new ChromeDriver();
+            //System.setProperty("webdriver.chrome.driver","C:\\Manjusha\\Selenium\\chromedriver_win32_109\\chromedriver.exe");
+        	WebDriverManager.chromedriver().setup();
+        	driver = new ChromeDriver();
 
         } else if (browserName.equalsIgnoreCase("Chrome_headless")) {
 
             //SeleniumManager.getInstance().getDriverPath("chromedriver");
-            System.setProperty("webdriver.chrome.driver","C:\\Manjusha\\Selenium\\chromedriver_win32_109\\chromedriver.exe");
-            ChromeOptions options = new ChromeOptions();
+            //System.setProperty("webdriver.chrome.driver","C:\\Manjusha\\Selenium\\chromedriver_win32_109\\chromedriver.exe");
+        	WebDriverManager.chromedriver().setup();
+        	ChromeOptions options = new ChromeOptions();
             HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
             chromePrefs.put("profile.default_content_settings.popups", 0);
             chromePrefs.put("excludeSwitches", "enable-automation");
@@ -107,12 +117,14 @@ public class BaseTest {
 
             driver = new ChromeDriver(options);
         }
-
+        
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(80));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+
         driver.manage().window().maximize();
 
-        driver.get(url);
+        driver.get(url);   
+        
         return driver;
 
     }

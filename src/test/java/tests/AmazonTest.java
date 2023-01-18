@@ -20,7 +20,7 @@ public class AmazonTest extends BaseTest {
     @Test(description="This test case searches for gel pens on Amazon.com and chooses the lowest priced pen")
     
     public void shopping_cart() {
-            onTestStart("Shopping Cart");
+            onTestStart("Amazon Shopping Cart");
 
             homePage.enterInSearchBox("gel pens");
             homePage.validateAllSearchSuggestions("gel pens");
